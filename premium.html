@@ -1,0 +1,431 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose a Plan - AI Resume Builder</title>
+  <link rel="stylesheet" href="premium.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f3ff;
+  color: #333;
+  padding: 40px 20px;
+}
+
+/* ===== Container Layout ===== */
+.pricing-container {
+  max-width: 1120px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ===== Left: Plan Column ===== */
+.plans {
+  flex: 1 1 500px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.plans h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #2a0a6a;
+}
+
+.subheading {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* ===== Discount Banner ===== */
+.highlight-box {
+  background: linear-gradient(135deg, #ffe29f, #ffa99f);
+  color: #4e2604;
+  border: none;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+/* ===== Plan Cards ===== */
+.plan-option {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
+}
+
+.plan-option:hover {
+  border-color: #a78bfa;
+  background: #f6f4ff;
+  transform: scale(1.03);
+}
+
+.plan-option input[type="radio"] {
+  margin-top: 6px;
+  transform: scale(1.2);
+  accent-color: #7c3aed;
+}
+
+.plan-details strong {
+  font-size: 1rem;
+  color: #1c1c1c;
+}
+
+.price {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+.discount-label {
+  background: #fff1c1;
+  color: #222;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  margin-left: 8px;
+}
+
+/* ===== Badge (Tag) ===== */
+.badge {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  background: #7c3aed;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 12px;
+  text-transform: uppercase;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* ===== CTA Button ===== */
+.btn-purchase {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s;
+}
+
+.btn-purchase:hover {
+  background: linear-gradient(135deg, #6d28d9, #4c1d95);
+  transform: scale(1.04);
+}
+
+/* ===== Payment Note ===== */
+.secure-note {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 12px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ===== Right: Testimonial & FAQ ===== */
+.testimonial-faq {
+  flex: 1 1 500px;
+  background: #f0efff;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+/* ===== Trustpilot Block ===== */
+.trustpilot-rating {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stars {
+  color: #00b67a;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* ===== Testimonial Card ===== */
+.testimonial-box {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.user-info img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ===== FAQ Section ===== */
+.faq-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-item h4 {
+  font-size: 0.95rem;
+  color: #2a2a2a;
+  margin-bottom: 5px;
+}
+
+.faq-item p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ===== Footer ===== */
+footer.section-p1 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px;
+  background-color: #333;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+footer .col {
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
+footer h4 {
+  margin-bottom: 10px;
+}
+
+footer a {
+  display: block;
+  margin: 5px 0;
+  color: #ccc;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+footer .icon i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .pricing-container {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .plans,
+  .testimonial-faq {
+    flex: 1 1 100%;
+    padding: 24px 20px;
+  }
+}
+
+</style></head>
+<body>
+
+  <div class="pricing-container">
+    <div class="combined-card">
+
+      <!-- Plans Section -->
+      <div class="plans">
+        <h2>Choose a plan to continue.</h2>
+        <p class="subheading">✅ Instant access. Cancel anytime.</p>
+
+        <div class="highlight-box">
+          <strong>75% discount applied for India-based job seekers.</strong>
+          <p>We are actively supporting India-based job seekers like you, so you get a huge discount on all plans for a limited time.</p>
+        </div>
+
+        <form class="plan-form">
+          <label class="plan-option selected">
+            <input type="radio" name="plan" checked="">
+            <div class="plan-details">
+              <strong>Monthly</strong>
+              <div class="price">
+                <s>$49</s> <span>$12.25/month</span>
+                <span class="discount-label">Extra 75% Off Applied</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="plan-option">
+            <input type="radio" name="plan">
+            <div class="plan-details">
+              <strong>Quarterly</strong>
+              <span class="badge popular">Most Popular</span>
+              <div class="price">
+                $8.25/month
+                <span class="discount-label">Extra 75% Off Applied</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="plan-option">
+            <input type="radio" name="plan">
+            <div class="plan-details">
+              <strong>One Year</strong>
+              <span class="badge value">Best Value</span>
+              <div class="price">
+                $4.77/month
+                <span class="discount-label">Extra 75% Off Applied</span>
+              </div>
+            </div>
+          </label>
+
+          <button type="submit" class="btn-purchase">Buy</button>
+          <p class="secure-note">
+            🔒 Secure payment by Paddle. We accept PayPal and all major cards. Prices in USD.
+          </p>
+        </form>
+      </div>
+
+      <!-- Testimonial + FAQ Section -->
+      <div class="testimonial-faq">
+        <div class="testimonial-box">
+          <div class="trustpilot-rating">
+            <strong>Excellent</strong>
+            <span class="stars">★★★★★</span>
+            <span>4.9 out of 5 based on 500+ reviews on Trustpilot</span>
+          </div>
+          <p class="testimonial-text">
+            “Very high quality suggestions and deep analysis, like having a professional with you 24/7. I went from a score of 20 to 97 with Pro, and I got noticeably more positive responses to my resume — practically overnight.”
+          </p>
+          <div class="user-info">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Rebecca Garcia">
+            <span class="user-name">Rebecca Garcia</span>
+          </div>
+        </div>
+
+        <div class="faq-section">
+          <h3>Frequently Asked Questions</h3>
+
+          <div class="faq-item">
+            <h4>Which plan is right for me?</h4>
+            <p>It depends on how long you plan to use the tools. One-year gives the best value.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Is LinkedIn optimization included?</h4>
+            <p>Yes! All premium plans include LinkedIn optimization features.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Can I turn off auto-renew?</h4>
+            <p>Yes, you can cancel anytime from your account settings.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>I’m a resume writer or career coach. What plan is best?</h4>
+            <p>The annual plan is best for professionals who support multiple clients.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+   <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 234 Govindpuri Road, Gwalior</p>
+      <p><strong>Phone:</strong> +01 2222 0611 / (+91)01 2546 0619</p>
+      <p><strong>Hours:</strong> 10:00–18:00, Mon–Sat</p>
+
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="#">About Us</a>
+      <a href="#">Delivery Information</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="#">Sign In</a>
+      <a href="#">View Cart</a>
+      <a href="#">My Wishlist</a>
+      <a href="#">Track My Order</a>
+      <a href="#">Help</a>
+    </div>
+  </footer>
+
+
+
+
+</body></html>

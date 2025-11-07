@@ -1,0 +1,65 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS Resume Score Checker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4ff;
+      padding: 40px;
+      text-align: center;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #4c5bd4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .score {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: green;
+    }
+  </style>
+<style type="text/css" id="operaUserStyle"></style></head>
+<body>
+
+  <div class="container">
+    <h1>🔍 ATS Resume Score Checker</h1>
+    <form action="/score" method="POST" enctype="multipart/form-data">
+      <label for="resume">Upload Resume (PDF or DOCX):</label>
+      <input type="file" name="resume" accept=".pdf,.docx" required="">
+
+      <label for="jobdesc">Paste Job Description:</label>
+      <textarea name="jobdesc" rows="6" placeholder="Paste the job description here..." required=""></textarea>
+
+      <button type="submit">Check Score</button>
+    </form>
+
+    {% if score %}
+    <div class="score">
+      ✅ Your ATS Score: <strong>{{ score }}%</strong>
+    </div>
+    {% endif %}
+  </div>
+
+  <py-script src="app.py"></py-script>
+
+
+</body></html>

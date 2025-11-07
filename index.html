@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Job Matcher</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* === GLOBAL === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #312e81);
+      color: #f3f4f6;
+      overflow-x: hidden;
+    }
+
+    /* === HEADER === */
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(90deg, #22d3ee, #6366f1);
+      border-bottom: 4px solid #38bdf8;
+      box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    /* === MAIN LAYOUT === */
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .sidebar, .content {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+      padding: 2rem;
+      flex: 1 1 450px;
+      transition: all 0.3s ease;
+    }
+    .sidebar:hover, .content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+    }
+
+    /* === FORM === */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #7dd3fc;
+    }
+    input[type="file"] {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #38bdf8;
+      background: #1e293b;
+      color: #f9fafb;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    input[type="file"]:hover {
+      border-color: #60a5fa;
+    }
+
+    button {
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #22d3ee, #6366f1);
+      color: #0f172a;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    }
+
+    /* === JOB RESULTS === */
+    .role-suggestion {
+      background: rgba(34, 211, 238, 0.1);
+      color: #22d3ee;
+      border-left: 5px solid #22d3ee;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .job-match {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+    .job-title a {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #93c5fd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .job-title a:hover {
+      color: #38bdf8;
+    }
+    .job-desc {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      margin-top: 5px;
+    }
+
+    /* === ADVANCED FEATURES === */
+    #details-advanced {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, #1e1b4b, #0f172a);
+    }
+    #details-advanced h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      color: #e0f2fe;
+      text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+    .details-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .detail-box {
+      flex: 1 1 250px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+      transition: all 0.3s ease;
+    }
+    .detail-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
+    }
+    .detail-box i {
+      font-size: 40px;
+      margin-bottom: 1rem;
+      color: #22d3ee;
+    }
+    .detail-box h3 {
+      color: #f3f4f6;
+      margin-bottom: 0.5rem;
+    }
+    .detail-box p {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    footer .col {
+      min-width: 200px;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    footer h4 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 5px;
+    }
+    footer a {
+      color: #e2e8f0;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #22d3ee;
+    }
+    .follow i {
+      margin-right: 12px;
+      font-size: 20px;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .follow i:hover {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .details-container {
+        flex-direction: column;
+      }
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Smart Job Matcher</h1>
+    <p>Upload your resume and let AI find your perfect career match</p>
+  </header>
+
+  <main>
+    <div class="sidebar">
+      <h2>📄 Upload Resume</h2>
+      <form id="resumeForm" onsubmit="matchJobs(event)" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="resumeFile">Select Resume (PDF)</label>
+          <input type="file" id="resumeFile" name="resumeFile" accept=".pdf" required />
+        </div>
+        <div class="form-group">
+          <button type="submit"><i class="fas fa-search"></i> Analyze Resume</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="content">
+      <h2>🎯 Best Fit Role</h2>
+      <div id="roleBanner"></div>
+
+      <h2>💼 Top Job Matches</h2>
+      <div id="jobResults"></div>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    function matchJobs(event) {
+      event.preventDefault();
+      const fileInput = document.getElementById('resumeFile');
+      const formData = new FormData();
+      formData.append('resumeFile', fileInput.files[0]);
+
+      fetch('/match', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          const roleBanner = document.getElementById('roleBanner');
+          const jobResults = document.getElementById('jobResults');
+          roleBanner.innerHTML = '';
+          jobResults.innerHTML = '';
+
+          if (data.error) {
+            jobResults.innerHTML = `<p style='color:red;'>${data.error}</p>`;
+            return;
+          }
+
+          roleBanner.innerHTML = `
+            <div class="role-suggestion">
+              <strong>Suggested Role:</strong> ${data.best_role} (${data.role_score}%)
+            </div>
+          `;
+
+          data.matches.forEach(job => {
+            jobResults.innerHTML += `
+              <div class="job-match">
+                <div class="job-title">
+                  <a href="${job.url}" target="_blank">${job.title}</a>
+                </div>
+                <div class="job-desc">
+                  ${job.company} · ${job.location} · Match: ${job.score}%
+                </div>
+                <p>${job.description}</p>
+              </div>
+            `;
+          });
+        })
+        .catch(err => {
+          document.getElementById('jobResults').innerHTML = `<p style='color:red;'>${err.message}</p>`;
+        });
+    }
+  </script>
+
+  <!-- Advanced Features Section -->
+  <section id="details-advanced">
+    <h2>🚀 Unlock the Full Power of AI in Resume Building</h2>
+    <div class="details-container">
+      <div class="detail-box">
+        <i class="fas fa-brain"></i>
+        <h3>Smart Keyword Optimization</h3>
+        <p>Enhance your resume with AI-selected keywords to pass ATS filters and attract recruiters.</p>
+      </div>
+      <div class="detail-box">
+        <i class="fas fa-trophy"></i>
+        <h3>Proven Job Templates</h3>
+        <p>Choose from layouts designed to increase your chances of getting hired faster.</p>
+      </div>
+      <div class="detail-box">
+        <i class="fas fa-language"></i>
+        <h3>Multilingual Ready</h3>
+        <p>Build resumes in different languages and target jobs globally with confidence.</p>
+      </div>
+      <div class="detail-box">
+        <i class="fas fa-lock"></i>
+        <h3>Data Privacy & Security</h3>
+        <p>Your resume data stays encrypted and private — only you control it.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 234 Govindpuri Road, Gwalior</p>
+      <p><strong>Phone:</strong> +91 2222 0611 / (+91) 2546 0619</p>
+      <p><strong>Hours:</strong> 10:00–18:00, Mon–Sat</p>
+      <div class="follow">
+        <h4>Follow Us</h4>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="#">About Us</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="#">Sign In</a>
+      <a href="#">View Cart</a>
+      <a href="#">Wishlist</a>
+      <a href="#">Track Order</a>
+      <a href="#">Help</a>
+    </div>
+  </footer>
+</body>
+</html>
