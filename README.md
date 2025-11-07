@@ -133,3 +133,160 @@ Our system uses **orchestrated agent collaboration** where specialized AI agents
 ---
 
 ## 🚀 Installation
+
+### Prerequisites
+```bash
+node >= 18.0.0
+python >= 3.10
+postgresql >= 14
+redis >= 6.0
+```
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AnujS394/Resume-agentic-ai.git
+cd Resume-agentic-ai
+```
+
+### 2. Backend Setup
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create `.env` file:
+```env
+# AI API Keys
+OPENAI_API_KEY=your_openai_key
+ANTHROPIC_API_KEY=your_anthropic_key
+
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/career_copilot
+REDIS_URL=redis://localhost:6379
+
+# Integration APIs
+LINKEDIN_CLIENT_ID=your_linkedin_id
+LINKEDIN_CLIENT_SECRET=your_linkedin_secret
+GMAIL_CLIENT_ID=your_gmail_id
+GMAIL_CLIENT_SECRET=your_gmail_secret
+GOOGLE_CALENDAR_API_KEY=your_calendar_key
+
+# Job Portals
+INDEED_API_KEY=your_indeed_key
+NAUKRI_API_KEY=your_naukri_key
+```
+
+Run migrations:
+```bash
+alembic upgrade head
+```
+
+Start backend:
+```bash
+uvicorn main:app --reload
+```
+
+### 3. Frontend Setup
+```bash
+cd ../frontend
+npm install
+```
+
+Create `.env.local`:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+Start frontend:
+```bash
+npm run dev
+```
+
+---
+
+## 📖 Usage
+
+### 1. Initial Setup
+```bash
+# Visit http://localhost:3000
+# Create account or sign in
+# Upload existing resume or create new one
+```
+
+### 2. Configure Preferences
+- Set target job roles
+- Define salary expectations
+- Choose job locations
+- Set application frequency (daily/weekly)
+
+### 3. Activate Agents
+```bash
+# Enable autonomous mode
+✅ Auto-apply to jobs
+✅ Auto-respond to recruiters
+✅ Auto-schedule interviews
+```
+
+### 4. Monitor Dashboard
+- View ATS scores
+- Track applications sent
+- See recruiter responses
+- Check upcoming interviews
+
+### 5. Continuous Improvement
+The system learns from:
+- Interview outcomes
+- Recruiter response rates
+- Job offer conversions
+- Resume performance metrics
+
+---
+
+## 🧪 API Documentation
+
+### Resume Endpoints
+```http
+POST   /api/v1/resume/create        # Create new resume
+GET    /api/v1/resume/{id}          # Get resume
+PUT    /api/v1/resume/{id}          # Update resume
+POST   /api/v1/resume/{id}/score    # Get ATS score
+GET    /api/v1/resume/{id}/variants # Get all variants
+```
+
+### Job Endpoints
+```http
+GET    /api/v1/jobs/search          # Search jobs
+POST   /api/v1/jobs/apply           # Apply to job
+GET    /api/v1/jobs/applications    # Get user applications
+```
+
+### Agent Endpoints
+```http
+POST   /api/v1/agents/trigger       # Manually trigger agent
+GET    /api/v1/agents/status        # Get agent status
+PUT    /api/v1/agents/config        # Update agent settings
+```
+
+Full API documentation: `http://localhost:8000/docs`
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Development Guidelines
+- Follow PEP 8 for Python code
+- Use ESLint for JavaScript/React
+- Write unit tests for new features
+- Update documentation
+
