@@ -83,3 +83,53 @@ Traditional job search is time-consuming and repetitive. Our agentic AI system:
                            │
                            ▼ (Loop Back)
 ```
+
+### Multi-Agent Coordination
+
+Our system uses **orchestrated agent collaboration** where specialized AI agents work together:
+
+1. **Coordinator Agent**: Manages overall workflow and agent communication
+2. **Resume Agents**: Build, score, and optimize resumes
+3. **Job Agents**: Discover, filter, and apply to positions
+4. **Communication Agents**: Handle recruiter interactions
+5. **Learning Agents**: Analyze outcomes and improve strategies
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React.js** - UI framework
+- **Next.js** - Server-side rendering & routing
+- **TailwindCSS** - Utility-first styling
+- **Shadcn/ui** - Component library
+
+### Backend
+- **Python** - Core backend language
+- **FastAPI** - High-performance API framework
+- **PostgreSQL** - Primary database
+- **Redis** - Caching & session management
+
+### AI & ML
+- **GPT-4** - Language understanding & generation
+- **Claude** - Complex reasoning tasks
+- **LangChain** - Agent orchestration framework
+- **CrewAI** - Multi-agent coordination
+- **OpenAI Embeddings** - Semantic search
+
+### Integrations
+- **LinkedIn API** - Profile optimization & job scraping
+- **Indeed API** - Job listings
+- **Naukri API** - Indian job market
+- **Gmail API** - Email automation
+- **Google Calendar API** - Interview scheduling
+- **Outlook Calendar API** - Alternative scheduling
+
+### DevOps
+- **Docker** - Containerization
+- **GitHub Actions** - CI/CD
+- **AWS/Vercel** - Cloud hosting
+
+---
+
+## 🚀 Installation
