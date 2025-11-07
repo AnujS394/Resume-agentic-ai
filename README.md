@@ -55,3 +55,31 @@ Traditional job search is time-consuming and repetitive. Our agentic AI system:
 ## 🏗️ System Architecture
 
 ### Agentic Workflow
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    USER INITIALIZATION                          │
+│              (Upload Resume / Set Career Goals)                 │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  PERCEPTION LAYER: Career Path Predictor & Skill Gap Analyzer  │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│     DECISION LAYER: Resume Builder & ATS Optimization Agent    │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│    ACTION LAYER: Job Discovery → Application → Communication   │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  LEARNING LAYER: Feedback Analysis & Continuous Improvement    │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼ (Loop Back)
+```
